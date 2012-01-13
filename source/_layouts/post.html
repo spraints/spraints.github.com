@@ -30,6 +30,12 @@ single: true
     <h1>Comments</h1>
     <div id="disqus_thread" aria-live="polite">{% include post/disqus_thread.html %}</div>
   </section>
+{% else %}
+  <section>
+    <div>
+      <i><a href="http://twitter.com/spraints">Follow up on twitter by replying to @spraints</a></i>
+    </div>
+  </section>
 {% endif %}
 </div>
 {% unless page.sidebar == false %}
