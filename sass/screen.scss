@@ -1,10 +1,122 @@
-@import "compass";
-@include global-reset;
-@include reset-html5;
+@import 'pygments';
 
-@import "custom/colors";
-@import "custom/fonts";
-@import "custom/layout";
-@import "base";
-@import "partials";
-@import "custom/styles";
+$fade: #aaa;
+
+@mixin underline-on-hover {
+  color: inherit;
+  text-decoration: none;
+  &:hover { text-decoration: underline; }
+}
+
+@mixin fade-unless-hover {
+  color: $fade;
+  text-decoration: none;
+  &:hover { color: black; }
+}
+
+body {
+  font-family: Cochin, serif;
+  font-size: 12pt;
+  margin: 0;
+  padding: 0;
+
+  & > div {
+    margin: 0 0 40px 125px;
+    padding-bottom: 20px;
+    padding-right: 20px;
+    //border-left: solid black 1px;
+
+    & > * {
+      padding: 0 0 0 10px;
+    }
+  }
+}
+
+#header {
+  padding-top: 1em;
+  padding-bottom: 1em;
+  //border-bottom: solid black 1px;
+}
+
+#nav {
+  position: absolute;
+  text-align: right;
+  width: 100px;
+  left: 0;
+
+  ul {
+    padding: 0;
+    margin: 0;
+    li {
+      list-style: none;
+      padding: 0.2em;
+      a {
+        display: block;
+        @include fade-unless-hover;
+      }
+    }
+  }
+}
+
+#footer {
+  color: $fade;
+  width: 350px;
+  text-align: center;
+  font-size: small;
+  //border-top: solid 1px black;
+  padding-top: 25px;
+  position: absolute;
+  left: 50%;
+  margin-left: -175px;
+  ul {
+    padding: 0;
+    margin: 0;
+    li {
+      list-style: none;
+      display: inline;
+      padding: 0;
+      margin: 0;
+      &:before {
+        content: '|';
+      }
+      &:first-child:before {
+        content: '';
+      }
+      a {
+        padding: 0 0.5em;
+        @include fade-unless-hover;
+      }
+    }
+  }
+  p {
+    padding: 0;
+    margin: 0;
+  }
+}
+
+h1.post-title a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul.posts {
+  padding: 0;
+  margin: 0;
+  li {
+    list-style: none;
+    .post-date {
+      display: inline-block;
+      width: 150px;
+      text-align: right;
+      color: $fade;
+    }
+    a {
+      @include underline-on-hover;
+    }
+  }
+}
+
+pre, code {
+  font-family: Monaco, monospace;
+  font-size: 10pt;
+}

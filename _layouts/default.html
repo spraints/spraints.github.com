@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>{{ site.title }}</title>
+    <link rel="stylesheet" type="text/css" href="/screen.css" />
+  </head>
+  <body><div>
+    <div id="header">
+      <h1 class="site-title">{{ site.title }}</h1>
+    </div>
+    <div id="nav">
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/blog">Blog</a></li>
+        <li><a href="/projects">Projects</a></li>
+      </ul>
+    </div>
+    <div id="main">
+      {{ content }}
+    </div>
+    <div id="footer">
+      <p>{{ site.subtitle }}</p>
+      <ul class="social">
+        <li><a class="twitter-link" href="https://twitter.com/spraints">twitter</a></li>
+        <li><a class="github-link" href="https://github.com/spraints">github</a></li>
+        <li><a class="linkedin-link" href="http://www.linkedin.com/pub/matt-burke/a/47/553">linkedin</a></li>
+      </ul>
+    </div>
+  </div></body>
+</html>
