@@ -22,7 +22,7 @@ I'm planning to support both.
 
 Here's what the original controller, supporting the old UI, might look like:
 
-{% highlight  ruby heading=group_members_controller.rb %}
+{% highlight ruby %}
 class GroupMembersController < ApplicationController
   # POST /groups/:group_id/members
   def create
@@ -38,7 +38,7 @@ I got the new UI working, and needed to update the controller.
 Being that it was so simple of a controller, I had previously skipped unit tests for it.
 So, I spun up a new unit test suite with tests to catch any regressions...
 
-{% highlight  ruby heading=group_members_controller_test.rb %}
+{% highlight  ruby %}
 class GroupMembersControllerTest < ActionController::TestCase
   setup do
     @group = Group.create!
@@ -63,7 +63,7 @@ Now to add the multi-user test.
 (In this case, the UI is building a single input with a ','-delimited list of user ids.)
 Here's the first test:
 
-{% highlight  ruby heading=group_members_controller_test.rb %}
+{% highlight  ruby %}
   test 'adds two members' do
     @user1 = User.create!
     @user2 = User.create!
@@ -83,7 +83,7 @@ I'll avoid the extra complexity.
 In this case, `:user_id => '1'` and `:user_ids => '1'` should behave the same,
 so there's really no need for two different parameters. A quick UI & test change ...
 
-{% highlight  ruby heading=group_members_controller_test.rb %}
+{% highlight  ruby %}
   test 'adds two members' do
     @user1 = User.create!
     @user2 = User.create!

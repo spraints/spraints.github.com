@@ -41,7 +41,7 @@ into one place.
 
 First, create a file called config.yml, maybe with something like this:
 
-{% highlight yaml heading=config.yml %}
+{% highlight yaml %}
 thing: abc
 nested:
   thing: def
@@ -49,7 +49,7 @@ nested:
 
 In your app, load up the config and use it.
 
-{% highlight ruby heading=app.rb %}
+{% highlight ruby %}
 require 'static_config'
 MyConfig = StaticConfig.build do
   file File.expand_path('config.yml', File.dirname(__FILE__))
@@ -63,7 +63,7 @@ puts MyConfig.nested.thing # => def
 So now, you want to change nested.thing to 'ghi' in production. It's
 not much different.
 
-{% highlight yaml heading=config.yml %}
+{% highlight yaml %}
 development:
   thing: abc
   nested:
@@ -114,7 +114,7 @@ Finally, let's say you're doing this in a rails app.
 You're going to want to have the configuration loaded
 automatically, and, in development, reloaded, too.
 
-{% highlight yaml heading=config/my_app.yml %}
+{% highlight yaml %}
 development:
   thing: abc
   nested:
@@ -129,7 +129,9 @@ production:
     thing: ghi
 {% endhighlight %}
 
-{% highlight ruby heading=config/initializers/config.rb %}
+In config/initializers/config.rb:
+
+{% highlight ruby %}
 MyConfig = StaticConfig.build do
   file Rails.root.join('config/my_app.yml'), :section => Rails.env
   env 'MY_APP'

@@ -54,13 +54,11 @@ config.try
 
 And, the output:
 
-{% highlight plain %}
-:ok
-:yes
-Note that the error happens the line before this one (this line = 24)
-wacky.rb:4:in `driver=': Driver cannot be :fail (ArgumentError)
-	from wacky.rb:23
-{% endhighlight %}
+    :ok
+    :yes
+    Note that the error happens the line before this one (this line = 24)
+    wacky.rb:4:in `driver=': Driver cannot be :fail (ArgumentError)
+            from wacky.rb:23
 
 I don't think I'd use this on a general purpose library, because of the ease of creating an infinite loop...
 
