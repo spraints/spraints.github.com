@@ -67,8 +67,8 @@ end
 {% endhighlight %}
 
 The problem I run into is this: If I do `Factory(:post)`, then
-the post[id:1] has an author[id:1] linked to site[id:1]. But
-post[id:1] is linked to site[id:2]!
+the post\[id:1] has an author\[id:1] linked to site\[id:1]. But
+post\[id:1] is linked to site\[id:2]!
 
 
 ## Solution: Use an after_build callback
