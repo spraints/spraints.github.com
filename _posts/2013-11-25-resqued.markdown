@@ -1,0 +1,99 @@
+---
+layout: post
+title: "Introducing Resqued"
+comments: true
+---
+
+[Resqued](https://github.com/spraints/resqued)
+('res-kyu-'dee) is a prefork daemon that manages a pool of resque workers.
+It's designed to support continuous deployment, long-running jobs, and high availability.
+
+The resqued daemon can be restarted, paused, or stopped gracefully via [signals](https://github.com/spraints/resqued/blob/master/docs/signals.md).
+On restart, resqued reloads your configuration in a new process.
+When the new process is ready, the old workers are spun down and new workers are forked.
+If the configuration does not load, the old workers will continue running.
+Workers that exit unexpectedly are restarted.
+
+## Using resqued
+
+Resqued is configured with a ruby-based configuration file.
+It includes a command-line program that starts the daemon either in the foreground or background.
+
+    $ resqued --help
+    Usage: resqued [options] resqued-config-files...
+        -h, --help                       Show this message
+        -v, --version                    Show the version
+            --test                       Report which worker would start
+        -p, --pidfile PIDFILE            Store the pid of the master process in PIDFILE
+        -l, --logfile LOGFILE            Write output to LOGFILE instead of stdout
+        -D, --daemonize                  Run daemonized in the background
+
+For a typical rails application, create `config/resqued.rb`:
+
+    # Run 4 workers
+    worker_pool 4
+
+    before_fork do
+      # Load the app environment.
+      require File.expand_path('config/environment.rb')
+      # Free up a DB connection.
+      ActiveRecord::Base.connection.disconnect!
+    end
+
+    after_fork do |worker|
+      # Reconnect to the database.
+      ActiveRecord::Base.establish_connection
+    end
+
+You can see which workers will be started:
+
+    $ resqued --test config/resqued.rb
+    Workers defined in config/resqued.rb
+    1: *
+    2: *
+    3: *
+    4: *
+
+To start the daemon in the foreground:
+
+    $ resqued config/resqued
+
+In production, you would start the daemon like this:
+
+    $ resqued -D -p tmp/pids/resqued.pid -l log/resqued.log config/resqued.rb
+
+## Migrating from `rake resque:work`
+
+If you've got an existing pool of workers, you're probably doing something like this:
+
+    $ rake resque:work QUEUE=high
+    $ rake resque:work QUEUE=high
+    $ rake resque:work QUEUE=high,normal
+    $ rake resque:work QUEUE=high,normal
+
+To reproduce this in resqued, you would create a config file that looks like this:
+
+    # before_fork and after_fork as above
+
+    worker_pool 4
+    queue 'high'
+    queue 'normal', :count => 2
+
+### without a pool
+
+The worker pool might not work for you if you're doing something like this:
+
+    $ rake resque:work QUEUE=high
+    $ rake resque:work QUEUE=high
+    $ rake resque:work QUEUE=normal
+    $ rake resque:work QUEUE=*
+
+To reproduce this in resqued, you would create a config file like this:
+
+    # before_fork and after_fork as above
+
+    2.times { worker 'high' }
+    worker 'normal'
+    worker '*'
+
+Many variants of worker configuration are documented in the [worker specs](https://github.com/spraints/resqued/blob/master/spec/resqued/config/worker_spec.rb).
