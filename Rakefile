@@ -7,7 +7,7 @@ task :css => 'screen.css'
 namespace :css do
   desc 'Auto-build the site\'s css to jekyll\'s output dir'
   task :watch do
-    sh 'sass', '--scss', '--watch', '_sass/screen.scss:_site/screen.css'
+    sh 'sass', '--scss', '--watch', '_sass/screen.scss:screen.css'
   end
 end
 
