@@ -1,10 +1,10 @@
 ---
 layout: page
 ---
-<h1>Blog posts</h1>
-(<a href="/atom.xml">atom</a>)
+<h2>Blog posts</h2>
 <ul class="posts">
   {% for post in site.posts %}
     <li><span class="post-date">{{ post.date | date: "%B %e, %Y" }}</span> <a href="{{ post.url }}">{{ post.title }}</a></li>
   {% endfor %}
 </ul>
+<p>(<a href="/atom.xml">atom</a>)</p>
