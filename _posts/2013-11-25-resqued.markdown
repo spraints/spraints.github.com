@@ -5,7 +5,7 @@ comments: true
 ---
 
 [Resqued](https://github.com/spraints/resqued)
-('res-kyu-'dee) is a prefork daemon that manages a pool of resque workers.
+(res-kyu-dee) is a prefork daemon that manages a pool of resque workers.
 It's designed to support continuous deployment, long-running jobs, and high availability.
 
 The resqued daemon can be restarted, paused, or stopped gracefully via [signals](https://github.com/spraints/resqued/blob/master/docs/signals.md).
