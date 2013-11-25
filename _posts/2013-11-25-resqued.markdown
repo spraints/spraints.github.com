@@ -30,20 +30,22 @@ It includes a command-line program that starts the daemon either in the foregrou
 
 For a typical rails application, create `config/resqued.rb`:
 
-    # Run 4 workers
-    worker_pool 4
+{% highlight ruby %}
+# Run 4 workers
+worker_pool 4
 
-    before_fork do
-      # Load the app environment.
-      require File.expand_path('config/environment.rb')
-      # Free up a DB connection.
-      ActiveRecord::Base.connection.disconnect!
-    end
+before_fork do
+  # Load the app environment.
+  require File.expand_path('config/environment.rb')
+  # Free up a DB connection.
+  ActiveRecord::Base.connection.disconnect!
+end
 
-    after_fork do |worker|
-      # Reconnect to the database.
-      ActiveRecord::Base.establish_connection
-    end
+after_fork do |worker|
+  # Reconnect to the database.
+  ActiveRecord::Base.establish_connection
+end
+{% endhighlight %}
 
 You can see which workers will be started:
 
@@ -73,11 +75,13 @@ If you've got an existing pool of workers, you're probably doing something like 
 
 To reproduce this in resqued, you would create a config file that looks like this:
 
-    # before_fork and after_fork as above
+{% highlight ruby %}
+# before_fork and after_fork as above
 
-    worker_pool 4
-    queue 'high'
-    queue 'normal', :count => 2
+worker_pool 4
+queue 'high'
+queue 'normal', :count => 2
+{% endhighlight %}
 
 ### without a pool
 
@@ -90,10 +94,12 @@ The worker pool might not work for you if you're doing something like this:
 
 To reproduce this in resqued, you would create a config file like this:
 
-    # before_fork and after_fork as above
+{% highlight ruby %}
+# before_fork and after_fork as above
 
-    2.times { worker 'high' }
-    worker 'normal'
-    worker '*'
+2.times { worker 'high' }
+worker 'normal'
+worker '*'
+{% endhighlight %}
 
 Many variants of worker configuration are documented in the [worker specs](https://github.com/spraints/resqued/blob/master/spec/resqued/config/worker_spec.rb).
