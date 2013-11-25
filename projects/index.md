@@ -12,6 +12,14 @@ Enables interaction with a TFS server, using git client tools.
 [github](https://github.com/git-tfs/git-tfs) |
 irc: #git-tfs
 
+## [resqued](https://github.com/spraints/)
+
+Resqued is a pre-fork daemon of resque workers.
+
+[github](https://github.com/spraints/resqued) |
+[gem](http://rubygems.org/gems/resqued) |
+[intro](/blog/2013/11/25/resqued/)
+
 ## [validates-belongs-to](https://github.com/spraints/validates-belongs-to)
 
 Rails 3 validation to ensure that two ActiveModel associations are related to each other.
