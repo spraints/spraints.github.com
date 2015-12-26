@@ -25,8 +25,8 @@ The area of the airfoil is the footprint of the greenhouse. If I recall correctl
 The coefficient of lift is a tough one to figure out. NASA has a [set of academic problems related to lift](https://www.grc.nasa.gov/www/k-12/WindTunnel/Activities/lift_formula.html), and the accompanying chart shows a peak *CL* of approximately 1.6. Wikipedia's [Lift coefficient page](https://en.wikipedia.org/wiki/Lift_coefficient) shows a maximum *CL* of 1.75. An aerospace engineering school's [high lift slide deck](http://www.dept.aoe.vt.edu/~mason/Mason_f/HiLiftPresPt1.pdf) maxes out around 1.75. I'm going to assume that we haven't found a magic formula for generating even higher lift, so I used *CL = 1.75* to have a worst-case estimate.
 
 *L* = 1/2 * 1.225 * (22.352)^2 * 270 * 1.75<br>
-*L* = 144468.292 Newtons<br>
-*L* = 32477 lbf<br>
+*L* = 144,468.292 Newtons<br>
+*L* = 32,477 lbf<br>
 
 Where does this force end up? We have 34 metal 2 5/8" ground posts. Each post is bolted to a wooden hip board with a 3/8" carriage bolt. U-channel is screwed onto the hip board with Tek screws or wood screws. The plastic is clamped to the U-channel with wiggle wire.
 
