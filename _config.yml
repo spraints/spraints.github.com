@@ -7,7 +7,6 @@ simple_search: http://google.com/search
 # From https://help.github.com/articles/using-jekyll-with-pages
 safe: true
 lsi: false
-pygments: true
 
 permalink: /blog/:year/:month/:day/:title
 paginate: 5
