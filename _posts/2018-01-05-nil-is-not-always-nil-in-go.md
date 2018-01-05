@@ -3,7 +3,7 @@ layout: post
 title: Nil isn't always nil in Go
 ---
 
-I ran across an interesting behavior in [Go](https://golang.org/) today.
+I ran across some interesting behavior in [Go](https://golang.org/) today.
 Given [this program](https://gist.github.com/spraints/7fa7f93366b6cdfffe30e4e5232adb02), what would you expect to happen?
 
 <script src="https://gist.github.com/spraints/7fa7f93366b6cdfffe30e4e5232adb02.js"></script>
