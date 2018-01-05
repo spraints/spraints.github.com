@@ -34,15 +34,15 @@ To see why, it helps to see the output from the `fmt.Printf` statements that are
 
 <pre>
 Trying &main.Owner{org:(*main.Organization)(nil), user:(*main.User)(nil)}
-  [0] <nil>
+  [0] &lt;nil>
   [1] (*main.Organization)(nil)
  => panic!! "invalid memory address or nil pointer dereference"
 Trying &main.Owner{org:(*main.Organization)(0xc42000e200), user:(*main.User)(nil)}
-  [0] <nil>
+  [0] &lt;nil>
   [1] &main.Organization{name:"group"}
  => "organization:group"
 Trying &main.Owner{org:(*main.Organization)(nil), user:(*main.User)(0xc42000e250)}
-  [0] <nil>
+  [0] &lt;nil>
   [1] (*main.Organization)(nil)
  => panic!! "invalid memory address or nil pointer dereference"
 </pre>
