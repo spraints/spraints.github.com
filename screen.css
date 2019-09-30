@@ -277,6 +277,8 @@ body {
     padding-right: 20px; }
     body > div > * {
       padding: 0 0 0 10px; }
+    body article img {
+      width: 700px; }
 
 #header {
   padding-top: 1em;
